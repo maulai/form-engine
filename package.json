@@ -1,6 +1,6 @@
 {
   "name": "@maulai/form-engine",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Declarative, headless form engine for React with opinionated behaviour and a pluggable UI kit.",
   "keywords": [
     "react",
