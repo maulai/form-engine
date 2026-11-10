@@ -1,0 +1,5 @@
+node_modules/
+dist/
+coverage/
+# app-specific design notes, not published
+notes/

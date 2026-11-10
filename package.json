@@ -1,0 +1,84 @@
+{
+  "name": "@maulai/form-engine",
+  "version": "0.0.0",
+  "description": "Declarative, headless form engine for React with opinionated behaviour and a pluggable UI kit.",
+  "keywords": [
+    "react",
+    "forms",
+    "form",
+    "declarative",
+    "headless",
+    "standard-schema",
+    "zod",
+    "valibot",
+    "validation",
+    "autosave"
+  ],
+  "author": "maulai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maulai/form-engine.git"
+  },
+  "homepage": "https://github.com/maulai/form-engine#readme",
+  "bugs": {
+    "url": "https://github.com/maulai/form-engine/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --typecheck",
+    "test:watch": "vitest --typecheck",
+    "changeset": "changeset",
+    "release": "npm run build && changeset publish",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.31.1",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "happy-dom": "^20.14.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "valibot": "^1.5.0",
+    "vitest": "^3.2.7",
+    "zod": "^4.6.7"
+  }
+}

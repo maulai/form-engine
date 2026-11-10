@@ -1,0 +1,36 @@
+name: Release
+
+# - Changesets opens / updates a "Version Packages" pull request; merging it publishes to npm.
+# - npm trusted publishing (OIDC): no token secret; configure the publisher once on npmjs.com.
+on:
+  push:
+    branches: [main]
+
+concurrency: release
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      # - trusted publishing needs a recent npm
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run typecheck && npm test
+      - uses: changesets/action@v1
+        with:
+          publish: npm run release
+          title: "Version Packages"
+          commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
